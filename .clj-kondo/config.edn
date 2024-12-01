@@ -1,0 +1,5 @@
+{:linters {:refer-all {:exclude [clojure.test
+                                 lib
+                                 uncomplicate.neanderthal.core
+                                 uncomplicate.neanderthal.native]}
+           :unused-namespace {:exclude [".*"]}}}

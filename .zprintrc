@@ -1,0 +1,16 @@
+{:fn-force-nl #{:binding}
+ :fn-gt2-force-nl #{:pair-fn}
+ :fn-map {"->>" :none-body
+          "catch" :arg2-force-nl-body
+          "defn" :arg1-force-nl
+          "json/read-str" :arg1-pair
+          "locking" :arg1-body
+          "some->" :noarg1-body
+          "some->>" :none-body
+          "try" :flow-body
+          "finally" :flow-body
+          "thrown?" :arg1-body}
+ :map {:comma? false}
+ :remove {:fn-force-nl #{:noarg1 :noarg1-body}}
+ :style [:sort-require :respect-bl :respect-nl]
+ :width 80}
