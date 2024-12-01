@@ -3,14 +3,14 @@
             [debux.core :refer [dbg]]
             [lib :refer :all]))
 
+(defn parse
+  [input]
+  (->> (parse-longs input) (partition 2) (apply map vector)))
+
 (defn part-a
   [input]
-  (let [xs (parse-longs input)
-        left (sort (take-nth 2 xs))
-        right (sort (take-nth 2 (rest xs)))
-        pairs (partition 2 (interleave left right))
-        deltas (map (fn [[a b]] (abs (- a b))) pairs)]
-    (sum deltas)))
+  (let [[left right] (parse input)]
+    (reduce + (map (comp abs -) (sort left) (sort right)))))
 
 (comment
   (part-a (read-example "day01"))
@@ -18,16 +18,9 @@
 
 (defn part-b
   [input]
-  (let [xs (parse-longs input)
-        left (sort (take-nth 2 xs))
-        right (sort (take-nth 2 (rest xs)))
-        mults (->> right
-                   (partition-by identity)
-                   (map #(vector (first %) (count %)))
-                   (into {}))
-        scores (map #(* % (get mults % 0)) left)]
-    (sum scores))
-)
+  (let [[left right] (parse input)
+        mults (frequencies right)]
+    (reduce + (map #(* % (get mults % 0)) left))))
 
 (comment
   (part-b (read-example "day01"))

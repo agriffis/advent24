@@ -25,12 +25,4 @@
 
 (defn parse-longs
   [s]
-  (->> (re-seq #"\d+" s) (map Long/parseLong)))
-
-(defn parse-bigints
-  [s]
-  (->> (re-seq #"\d+" s) (map bigint)))
-
-(defn sum
-  [xs]
-  (reduce + xs))
+  (->> (re-seq #"\d+" s) (map parse-long)))
