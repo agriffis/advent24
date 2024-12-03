@@ -25,4 +25,4 @@
 
 (defn parse-longs
   [s]
-  (->> (re-seq #"\d+" s) (map parse-long)))
+  (->> (re-seq #"\d+" s) (mapv parse-long)))
